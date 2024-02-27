@@ -17,7 +17,7 @@ const Login = ({ onSignupClick }) => {
       const responseData = await api.login(email, password);
       console.log(responseData); // Output the response data
       // Optionally, you can redirect the user to the login page upon successful signup
-      onLoginClick(); 
+      onSignupClick();
       // Assuming `onLoginClick` is a function passed from the parent component to switch to the login view
 
       // Clear the form fields after logging
