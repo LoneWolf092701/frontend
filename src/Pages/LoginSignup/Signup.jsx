@@ -13,12 +13,15 @@ const Signup = ({ onLoginClick }) => {
   const [password, setPassword] = useState("");
   const [email, setEmail] = useState("");
 
+  //set the emmail error
   const [gmailError, setGmailError] = useState(false);
-  const [disable, setDisable] = useState(false);
+
+  //to disable the button once the user clicks it
+  const [disables, setDisables] = useState(false);
 
   const handleSignup = async (e) => {
     e.preventDefault(); // Prevent the form from submitting automatically
-    setDisable(true);
+    setDisables(true);
 
     try {
       console.log(username, email, password);
@@ -29,12 +32,12 @@ const Signup = ({ onLoginClick }) => {
         onLoginClick();
         toast.dismiss();
         toast.success(`Login Success!!`);
-        setDisable(false);
+        setDisables(false);
       } else {
         setGmailError(true);
         toast.dismiss();
         toast.error(`Login Failed!!`);
-        setDisable(false);
+        setDisables(false);
       }
 
       // Optionally, you can redirect the user to the login page upon successful signup
@@ -77,7 +80,12 @@ const Signup = ({ onLoginClick }) => {
         <GiPadlock className="icon" />
       </div>
       <div>
-        <button type="button" className="submit gray" onClick={handleSignup}>
+        <button
+          type="button"
+          className="submit gray"
+          disabled={disables}
+          onClick={handleSignup}
+        >
           Sign up
         </button>
         <Divider />
